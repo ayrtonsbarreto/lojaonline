@@ -98,17 +98,10 @@ public class UsuarioDAO extends Database implements Dao<Usuario> {
             if (rs.next()) {
                 String nome = rs.getString("nome");
                 String email = rs.getString("email");
-                String senha = rs.getString("senha");
-                String telefone = rs.getString("telefone");
                 boolean admin = rs.getBoolean("admin");
-                Setor setor = Setor.findById(rs.getInt("setorId"));
-
                 usuario.setNome(nome);
                 usuario.setEmail(email);
-                usuario.setSenha(senha);
-                usuario.setTelefone(telefone);
                 usuario.setAdmin(admin);
-                usuario.setSetor(setor);
 
             }
 
