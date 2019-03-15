@@ -1,23 +1,24 @@
 package lojaonline.modelo;
 
-public class Pessoa {
+public class Usuario {
 	private int id;
 	private String nome;
 	private String email;
 	private String senha;
+	private boolean admin;
 	
-	
-	public Pessoa() {
+	public Usuario() {
 		
 	}
 	
 	
-	public Pessoa(int id, String Nome, String Email, String Senha) {
+	public Usuario(int id, String Nome, String Email, String Senha, boolean Admin) {
 		super();
 		this.id = id;
 		this.nome = Nome;
 		this.email = Email;
 		this.senha = Senha;
+		this.admin = Admin;
 	}
 
 
@@ -58,6 +59,16 @@ public class Pessoa {
 
 	public void setSenha(String senha) {
 		this.senha = senha;
+	}
+
+
+	public boolean isAdmin() {
+		return admin;
+	}
+
+
+	public void setAdmin(boolean admin) {
+		this.admin = admin;
 	}
 	
 }

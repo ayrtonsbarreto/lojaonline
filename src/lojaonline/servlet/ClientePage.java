@@ -23,16 +23,7 @@ public class ClientePage extends HttpServlet{
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		
-	}
-	
-	@Override
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		PrintWriter out = resp.getWriter();
-		out.println("<html>");
-		out.println("<body>");
-		out.println("<a href='/lojaonline/cadastroUsuario.html'> Cadastro </a></br>");
-		out.println("</body>");
-		out.println("</html>");
+		System.out.println("olá");
+		resp.getWriter().append("Served at: ").append(req.getContextPath()).close();
 	}
 }
