@@ -1,11 +1,16 @@
 package lojaonline.modelo;
 
+import java.util.ArrayList;
+import java.util.List;
+import lojaonline.modelo.db.UsuarioDAO;
+
 public class Usuario {
 	private int id;
 	private String nome;
 	private String email;
 	private String senha;
 	private boolean admin;
+	private static UsuarioDAO dao = new UsuarioDAO();
 	
 	public Usuario() {
 		
@@ -70,5 +75,29 @@ public class Usuario {
 	public void setAdmin(boolean admin) {
 		this.admin = admin;
 	}
+	
+    public static List<Usuario> all() {
+        return dao.all();
+    }
+
+    public void save() {
+        if (id != 0) {
+            dao.update(this);
+        } else {
+            dao.create(this);
+        }
+    }
+
+    public void delete() {
+        dao.delete(this);
+    }
+    
+    public static Usuario findById(int id) {
+        return dao.findById(id);
+    }
+
+    public static Usuario login(String email, String senha) {
+        return dao.login(email, senha);
+    }
 	
 }

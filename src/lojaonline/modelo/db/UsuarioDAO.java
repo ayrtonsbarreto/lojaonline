@@ -13,7 +13,7 @@ public class UsuarioDAO extends Database implements Dao<Usuario> {
     @Override
     public void create(Usuario usuario) {
         open();
-        String query = "INSERT INTO usuario(nome, email, senha) VALUES (?,?,?);";
+        String query = "INSERT INTO usuarios(nome, email, senha) VALUES (?,?,?);";
         try {
             PreparedStatement pst = connection.prepareStatement(query);
             pst.setString(1, usuario.getNome());
@@ -30,7 +30,7 @@ public class UsuarioDAO extends Database implements Dao<Usuario> {
     @Override
     public void delete(Usuario usuario) {
         open();
-        String query = "DELETE FROM usuario WHERE id = ?;";
+        String query = "DELETE FROM usuarios WHERE id = ?;";
         try {
             PreparedStatement pst = connection.prepareStatement(query);
             pst.setInt(1, usuario.getId());
@@ -45,7 +45,7 @@ public class UsuarioDAO extends Database implements Dao<Usuario> {
     @Override
     public void update(Usuario usuario) {
         open();
-        String query = "UPDATE usuario SET nome = ?, email = ?, senha = ? WHERE id = ?;";
+        String query = "UPDATE usuarios SET nome = ?, email = ?, senha = ? WHERE id = ?;";
         try {
             PreparedStatement pst = connection.prepareStatement(query);
             pst.setString(1, usuario.getNome());
@@ -64,7 +64,7 @@ public class UsuarioDAO extends Database implements Dao<Usuario> {
     public List<Usuario> all() {
         open();
         ArrayList<Usuario> usuarioList = new ArrayList<>();
-        String query = "SELECT * FROM usuario;";
+        String query = "SELECT * FROM usuarios;";
         try {
             PreparedStatement pst = connection.prepareStatement(query);
             ResultSet rs = pst.executeQuery();
@@ -90,7 +90,7 @@ public class UsuarioDAO extends Database implements Dao<Usuario> {
     public Usuario findById(int id) {
         open();
         Usuario usuario = new Usuario();
-        String query = "SELECT * FROM usuario WHERE id = ?;";
+        String query = "SELECT * FROM usuarios WHERE id = ?;";
         try {
             PreparedStatement pst = connection.prepareStatement(query);
             pst.setInt(1, id);
@@ -114,7 +114,7 @@ public class UsuarioDAO extends Database implements Dao<Usuario> {
     }
 
     public Usuario login(String email, String senha) {
-        String query = "SELECT * FROM usuario WHERE email = ? and senha = ?";
+        String query = "SELECT * FROM usuarios WHERE email = ? and senha = ?";
         Usuario usuario = new Usuario();
 
         try {

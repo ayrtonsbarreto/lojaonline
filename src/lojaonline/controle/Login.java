@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import lojaonline.modelo.Usuario;
+
 /**
  * Servlet implementation class Login
  */
@@ -36,7 +38,18 @@ public class Login extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String email = request.getParameter("email");
 		String senha = request.getParameter("senha");
-		response.getWriter().append("Email: "+ email + " Senha: "+ senha).close();
+		
+		Usuario u = Usuario.login(email, senha);
+		
+		boolean logado = (u.getEmail() == email);
+		
+		if(logado) {
+			response.sendRedirect("ListaProdutos.jsp");
+		} else {
+			response.getWriter().append("Login invalido!");
+		}
+		
+		
 	}
 
 }
