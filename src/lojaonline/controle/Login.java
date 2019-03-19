@@ -1,40 +1,29 @@
 package lojaonline.controle;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import lojaonline.modelo.Usuario;
 
-/**
- * Servlet implementation class Login
- */
 @WebServlet("/Login")
 public class Login extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
     public Login() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String email = request.getParameter("email");
 		String senha = request.getParameter("senha");
@@ -44,10 +33,24 @@ public class Login extends HttpServlet {
 		boolean logado = (u.getEmail() == email);
 		
 		if(logado) {
-			response.sendRedirect("ListaProdutos.jsp");
-		} else {
-			response.getWriter().append("Login invalido!");
-		}
+
+            HttpSession session = request.getSession(true);
+            session.setMaxInactiveInterval(60*15);
+            session.setAttribute("usuario", u);
+            RequestDispatcher d = null;
+            
+            if(u.isAdmin()) {
+            	d = request.getRequestDispatcher("LojistaPage");
+            }else {
+            	d = request.getRequestDispatcher("ClientePage");	
+            }
+            
+            d.forward(request, response);
+
+	    } else {
+	        RequestDispatcher d = request.getRequestDispatcher("Login");
+	        d.forward(request, response);
+	    }
 		
 		
 	}

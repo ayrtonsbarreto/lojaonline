@@ -32,12 +32,15 @@
 			    <td>${p.preco}</td>
 			    <td>${p.estoque}</td>
 			    <td>
-			    	<a href="#">Adicionar</a>
+			    	<c:if test="${p.estoque < 1}">Sem estoque</c:if>
+			    	<c:if test="${p.estoque > 0}">
+			    		<a href="Carrinho?id=${p.id}&comando=add">Adicionar</a>
+			    	</c:if>
 			    </td>
 			  </tr>
 		  </c:forEach>
 		</table>
-		<a href="#">Ver Carrinho</a>
+		<a href="VerCarrinho.jsp">Ver Carrinho</a>
 	</div>
 </body>
 </html>

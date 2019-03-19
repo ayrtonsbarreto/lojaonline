@@ -38,11 +38,12 @@ public class Carrinho extends HttpServlet {
 			System.out.println(prod.getNome());
 		}
 		
-		String command = request.getParameter("comando");
+		String comando = request.getParameter("comando");
+		int id = Integer.parseInt(request.getParameter("id"));
 		
-		if (command.equals("add")){
+		if (comando.equals("add")){
 			
-		}else if (command.equals("remove")){
+		}else if (comando.equals("remove")){
 
 		}
 		

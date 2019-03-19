@@ -12,11 +12,8 @@
 <title>Loja | Ver Carrinho</title>
 </head>
 <body>
-	<% 
-
-	%>
 	<div>
-		<h1>Lista Produtos</h1>
+		<h1>Lista Carrinho</h1>
 		<table>
 		  <tr>
 		    <th>Nome</th>
@@ -35,7 +32,7 @@
 		    </td>
 		  </tr>
 		</table>
-		<a href="#">Ver Carrinho</a>
+		<a href="ListaProdutos.jsp">Ver Produtos</a>
 	</div>
 </body>
 </html>
