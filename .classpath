@@ -20,5 +20,7 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="lib" path="/home/arthur/eclipse-workspace/lojaonline/deps/jstl-1.2.jar"/>
+	<classpathentry kind="lib" path="deps/jstl-1.2.jar"/>
+	<classpathentry kind="lib" path="deps/postgresql-42.2.5.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
