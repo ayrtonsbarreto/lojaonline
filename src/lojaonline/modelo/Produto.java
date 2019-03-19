@@ -68,6 +68,10 @@ public class Produto{
 		this.estoque--;
 	}
 	
+    public static List<Produto> all() {
+        return dao.all();
+    }
+	
     public void save() {
         if (id != 0) {
             dao.update(this);
