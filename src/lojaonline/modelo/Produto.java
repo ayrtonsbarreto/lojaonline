@@ -1,5 +1,8 @@
 package lojaonline.modelo;
 
+import java.util.List;
+
+import lojaonline.modelo.db.ProdutoDAO;
 
 public class Produto{
 
@@ -8,8 +11,18 @@ public class Produto{
 	private String descricao;
 	private double preco;
 	private int estoque;
+	private static ProdutoDAO dao = new ProdutoDAO();
+
 	
-	
+
+	public Produto(int Id, String Descricao) {
+		this.id = Id;
+		this.descricao = Descricao;
+	}
+
+	public Produto() {
+		
+	}
 
 	public int getId() {
 		return id;
@@ -54,5 +67,25 @@ public class Produto{
 	public void diminuiEstoque() {
 		this.estoque--;
 	}
+	
+    public void save() {
+        if (id != 0) {
+            dao.update(this);
+        } else {
+            dao.create(this);
+        }
+    }
+
+    public void delete() {
+        dao.delete(this);
+    }
+
+    public static Produto findById(int id) {
+        return dao.findById(id);
+    }
+
+    public static List<Produto> findByName(String n) {
+        return dao.findByName(n);
+    }
 	
 }
