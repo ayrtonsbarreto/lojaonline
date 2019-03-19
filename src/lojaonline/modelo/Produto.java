@@ -13,15 +13,23 @@ public class Produto{
 	private int estoque;
 	private static ProdutoDAO dao = new ProdutoDAO();
 
-	
+	public Produto() {
+		
+	}
 
 	public Produto(int Id, String Descricao) {
 		this.id = Id;
 		this.descricao = Descricao;
 	}
+	
+	
 
-	public Produto() {
-		
+	public Produto(String nome, String descricao, double preco, int estoque) {
+		super();
+		this.nome = nome;
+		this.descricao = descricao;
+		this.preco = preco;
+		this.estoque = estoque;
 	}
 
 	public int getId() {

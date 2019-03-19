@@ -6,12 +6,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import javafx.scene.control.Alert;
 import lojaonline.modelo.Produto;
 
-/**
- * @author arthur
- */
 public class ProdutoDAO extends Database implements Dao<Produto> {
     @Override
     public void create(Produto produto) {
