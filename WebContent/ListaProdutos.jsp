@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<jsp:useBean id="produto" class="lojaonline.modelo.Produto"/>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,15 +25,17 @@
 		    <th>Estoque</th>
 		    <th>Carrinho</th>
 		  </tr>
-		  <tr>
-		    <td></td>
-		    <td></td>
-		    <td></td>
-		    <td></td>
-		    <td>
-		    	<a href="#"></a>
-		    </td>
-		  </tr>
+		  <c:forEach var="p" items="${produto.all()}">
+			  <tr>
+			    <td>${p.nome}</td>
+			    <td>${p.descricao}</td>
+			    <td>${p.preco}</td>
+			    <td>${p.estoque}</td>
+			    <td>
+			    	<a href="#">Adicionar</a>
+			    </td>
+			  </tr>
+		  </c:forEach>
 		</table>
 		<a href="#">Ver Carrinho</a>
 	</div>

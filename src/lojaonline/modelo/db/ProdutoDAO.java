@@ -71,10 +71,13 @@ public class ProdutoDAO extends Database implements Dao<Produto> {
             ResultSet rs = pst.executeQuery();
             while (rs.next()) {
                 int id = rs.getInt("id");
-                String desc = rs.getString("descricao").trim();
-                boolean disponivel = rs.getBoolean("disponivel");
-                Produto m = new Produto(id, desc);
-                produtosList.add(m);
+                String n = rs.getString("nome").trim();
+                String d = rs.getString("descricao").trim();
+                Double p = rs.getDouble("preco");
+                int e = rs.getInt("estoque");
+                Produto produto = new Produto(n, d, p, e);
+                produto.setId(id);
+                produtosList.add(produto);
             }
 
         } catch (SQLException e) {
