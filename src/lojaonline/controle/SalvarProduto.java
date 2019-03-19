@@ -33,12 +33,14 @@ public class SalvarProduto extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String nome = request.getParameter("nome");
 		String descricao = request.getParameter("descricao");
+		Double preco = Double.parseDouble(request.getParameter("preco").replace(",","."));
+		int estoque = Integer.parseInt(request.getParameter("estoque"));
 		
-		Produto p = new Produto(nome, descricao, 1, 2);
+		Produto p = new Produto(nome, descricao, preco, estoque);
 		
 		p.save();
 		
-		response.sendRedirect("/CadastroProduto.html");
+		response.sendRedirect("CadastroProduto.html");
 	}
 
 }
