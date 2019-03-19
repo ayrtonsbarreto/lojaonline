@@ -12,6 +12,9 @@
 <title>Loja | Ver Carrinho</title>
 </head>
 <body>
+	<% 
+
+	%>
 	<div>
 		<h1>Lista Produtos</h1>
 		<table>

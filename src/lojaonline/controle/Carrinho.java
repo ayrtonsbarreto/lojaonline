@@ -7,19 +7,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import lojaonline.modelo.Usuario;
+import lojaonline.modelo.Produto;
 
 /**
- * Servlet implementation class CadastroUsuario
+ * Servlet implementation class Carrinho
  */
-@WebServlet("/CadastroUsuario")
-public class CadastroUsuario extends HttpServlet {
+@WebServlet("/Carrinho")
+public class Carrinho extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public CadastroUsuario() {
+    public Carrinho() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -28,7 +28,24 @@ public class CadastroUsuario extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		String s = "5Q2";
+		String produtos[] = s.split(" ");
+		
+		for (String p : produtos) {
+			String item[] = s.split("Q");
+			System.out.println(item[0]);
+			Produto prod = Produto.findById(Integer.parseInt(item[0]));
+			System.out.println(prod.getNome());
+		}
+		
+		String command = request.getParameter("comando");
+		
+		if (command.equals("add")){
+			
+		}else if (command.equals("remove")){
+
+		}
+		
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
@@ -36,13 +53,8 @@ public class CadastroUsuario extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String nome = request.getParameter("nome");
-		String email = request.getParameter("email");
-		String senha = request.getParameter("senha");
-		
-		Usuario u = new Usuario(nome, email, senha);
-		u.save();
-		response.sendRedirect("ClientePage");
+		// TODO Auto-generated method stub
+		doGet(request, response);
 	}
 
 }

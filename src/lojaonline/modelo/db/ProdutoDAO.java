@@ -91,15 +91,19 @@ public class ProdutoDAO extends Database implements Dao<Produto> {
     @Override
     public Produto findById(int id) {
         open();
-        Produto produto = new Produto();
+        Produto produto = null;
         String query = "SELECT * FROM produtos WHERE id = ?;";
         try {
             PreparedStatement pst = connection.prepareStatement(query);
             pst.setInt(1, id);
             ResultSet rs = pst.executeQuery();
             if (rs.next()) {
-                produto.setId(rs.getInt("id"));
-                produto.setDescricao(rs.getString("descricao").trim());
+                String n = rs.getString("nome").trim();
+                String d = rs.getString("descricao").trim();
+                Double p = rs.getDouble("preco");
+                int e = rs.getInt("estoque");
+                produto = new Produto(n, d, p, e);
+                produto.setId(id);
             }
 
         } catch (SQLException e) {
