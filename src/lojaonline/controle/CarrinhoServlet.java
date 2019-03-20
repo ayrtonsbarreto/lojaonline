@@ -30,19 +30,24 @@ public class CarrinhoServlet extends HttpServlet {
 		String carrinhoTxt = Carrinho.getCartCookie(request);
 		System.out.println(carrinhoTxt);
 		
-		if (carrinhoTxt != null) {
+		if (carrinhoTxt != null && !carrinhoTxt.equals("")) {
 			String s = Carrinho.updateCartString(carrinhoTxt, command, id);
 			Cookie cart = new Cookie("cart", s);
 			cart.setMaxAge(60*60*48);
 			response.addCookie(cart);
 
 		}else {
-			Cookie cart = new Cookie("cart", id+"Q"+1+"");
+			Cookie cart = new Cookie("cart", id+"Q"+1+" ");
 			cart.setMaxAge(60*60*48);
 			response.addCookie(cart);
 		}
 		
-		response.sendRedirect("ListaProdutos.jsp");
+		if(command.equals("remove")) {
+			response.sendRedirect("VerCarrinho.jsp");
+		}else {
+			response.sendRedirect("ListaProdutos.jsp");
+		}
+		
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

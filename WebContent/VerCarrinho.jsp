@@ -1,7 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@page import="java.util.ArrayList" %>
+<%@page import="lojaonline.modelo.Produto" %>
+<%@page import="lojaonline.modelo.Produto" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<jsp:useBean id="produto" class="lojaonline.modelo.Produto"/>
 <jsp:useBean id="carrinho" class="lojaonline.modelo.Carrinho"/>
     
 <!DOCTYPE html>
@@ -17,6 +19,8 @@
 </head>
 <body>
 	<%
+	request.setAttribute("cart", carrinho.getCartCookie(request));
+
 	%>
 	<div>
 		<h1>Lista Carrinho</h1>
@@ -28,17 +32,14 @@
 		    <th>Quantidade</th>
 		    <th>Remover</th>
 		  </tr>
-		  <c:forEach var="p" items="${produto.all()}">
+		  <c:forEach var="p" items="${carrinho.getCartProducts(requestScope.cart)}">
 			  <tr>
 			    <td>${p.nome}</td>
 			    <td>${p.descricao}</td>
 			    <td>${p.preco}</td>
-			    <td>${p.estoque}</td>
+			    <td>${p.quantidade}</td>
 			    <td>
-			    	<c:if test="${p.estoque < 1}">Sem estoque</c:if>
-			    	<c:if test="${p.estoque > 0}">
-			    		<a href="CarrinhoServlet?id=${p.id}&comando=add">Adicionar</a>
-			    	</c:if>
+			    	<a href="CarrinhoServlet?id=${p.id}&comando=remove">Remover</a>
 			    </td>
 			  </tr>
 		  </c:forEach>

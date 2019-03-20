@@ -37,15 +37,13 @@ public class Login extends HttpServlet {
             HttpSession session = request.getSession(true);
             session.setMaxInactiveInterval(60*15);
             session.setAttribute("usuario", u);
-            RequestDispatcher d = null;
-            
+            System.out.println(u);
             if(u.isAdmin()) {
-            	d = request.getRequestDispatcher("LojistaPage");
+            	response.sendRedirect("LojistaPage");
             }else {
-            	d = request.getRequestDispatcher("ClientePage");	
+            	response.sendRedirect("ClientePage");	
             }
             
-            d.forward(request, response);
 
 	    } else {
 	        RequestDispatcher d = request.getRequestDispatcher("Login");

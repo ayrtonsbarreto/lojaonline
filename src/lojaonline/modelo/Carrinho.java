@@ -1,12 +1,15 @@
 package lojaonline.modelo;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 
 public class Carrinho {
+	public Carrinho() {
+		super();
+	}
+
 	public Carrinho(ArrayList<Produto> produtos) {
 		super();
 		this.produtos = produtos;
@@ -55,31 +58,44 @@ public class Carrinho {
 		return cart;
 	}
 	
-	public static List<Produto> getCartProducts(HttpServletRequest request) {
+	public static ArrayList<Produto> getCartProducts(String cart) {
         ArrayList<Produto> produtos = new ArrayList<>();
-        String cart = getCartCookie(request);
+        
+        if(cart.equals("")) {
+    		return produtos;
+        }
+        
 		String s[] = cart.split(" ");
 		
 		for (String op : s) {
 			String item[] = op.split("Q");
 			Produto produto = Produto.findById(Integer.parseInt(item[0]));
-			if(produto != null)	
+			if(produto != null)	{
+				produto.setQuantidade(Integer.parseInt(item[1]));
 				produtos.add(produto);
+			}
 		}
 		return produtos;
 	}
 	
 	public static String updateCartString(String cart, String command, int productId) {
+		if(cart.equals("")) {
+    		return "";
+        }
+		
 		String s[] = cart.split(" ");
 		int productQtd = 0;
 		
 		for (String op : s) {
 			String item[] = op.split("Q");
-			int id = Integer.parseInt(item[0]);
-			int qtd = Integer.parseInt(item[1]);
-			
-			if(id == productId) {
-				productQtd = qtd;
+			try {
+				int id = Integer.parseInt(item[0]);
+				int qtd = Integer.parseInt(item[1]);
+				
+				if(id == productId) {
+					productQtd = qtd;
+				}
+			} catch (Exception e) {
 			}
 		}
 		
@@ -87,10 +103,10 @@ public class Carrinho {
 			if(productQtd > 0 )
 				cart = cart.replace(productId+"Q"+productQtd, productId+"Q"+(productQtd+1));
 			else
-				cart += " "+productId+"Q"+1;
+				cart += productId+"Q"+1+" ";
 		}else if (command.equals("remove")){
 			if(productQtd > 0 )
-				cart = cart.replace(productId+"Q"+productQtd, "");
+				cart = cart.replace(productId+"Q"+productQtd+" ", "");
 		}
 		
 		return cart;
