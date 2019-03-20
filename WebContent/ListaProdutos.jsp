@@ -34,7 +34,7 @@
 			    <td>
 			    	<c:if test="${p.estoque < 1}">Sem estoque</c:if>
 			    	<c:if test="${p.estoque > 0}">
-			    		<a href="Carrinho?id=${p.id}&comando=add">Adicionar</a>
+			    		<a href="CarrinhoServlet?id=${p.id}&comando=add">Adicionar</a>
 			    	</c:if>
 			    </td>
 			  </tr>

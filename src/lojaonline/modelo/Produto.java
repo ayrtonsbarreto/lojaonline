@@ -11,6 +11,7 @@ public class Produto{
 	private String descricao;
 	private double preco;
 	private int estoque;
+	private int quantidade;
 	private static ProdutoDAO dao = new ProdutoDAO();
 
 	public Produto() {
@@ -79,8 +80,16 @@ public class Produto{
     public static List<Produto> all() {
         return dao.all();
     }
-	
-    public void save() {
+    
+    public int getQuantidade() {
+		return quantidade;
+	}
+
+	public void setQuantidade(int quantidade) {
+		this.quantidade = quantidade;
+	}
+
+	public void save() {
         if (id != 0) {
             dao.update(this);
         } else {
