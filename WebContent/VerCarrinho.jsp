@@ -10,11 +10,6 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<style>
-	table, th, td {
-		border: 1px solid black;
-	}
-</style>
 <title>Loja | Ver Carrinho</title>
 </head>
 <body>
@@ -22,9 +17,11 @@
 	request.setAttribute("cart", carrinho.getCartCookie(request));
 
 	%>
+	<%@include  file="Cabecalho.jsp" %>
+	
 	<div>
 		<h1>Lista Carrinho</h1>
-		<table>
+		<table class="table">
 		  <tr>
 		    <th>Nome</th>
 		    <th>Descrição</th>

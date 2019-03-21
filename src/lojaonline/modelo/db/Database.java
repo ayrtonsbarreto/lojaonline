@@ -9,9 +9,14 @@ import java.util.logging.Logger;
 public class Database {
 
     protected Connection connection;
-    private String url = "jdbc:postgresql://localhost:5432/lojadb";
-    private String user = "postgres";
-    private String password = "postgres";
+//    private String url = "jdbc:postgresql://localhost:5432/lojadb";
+//    private String user = "postgres";
+//    private String password = "postgres";
+    
+  private String url = "jdbc:postgresql://ec2-184-73-153-64.compute-1.amazonaws.com:5432/d6ge2oak9ojm48?ssl=true&sslfactory=org.postgresql.ssl.NonValidatingFactory";
+  private String user = "hmdidjdkshjnuo";
+  private String password = "d7bfabe612cf49308df8ee7ba3c09221f4b45760894f0f97f20d3e3185d0d417";
+  		
 
     public void open() {
         try {

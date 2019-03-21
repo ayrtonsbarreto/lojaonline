@@ -7,38 +7,30 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<style>
-    table, th, td {
-        border: 1px solid black;
-    }
-</style>
+
 <title>Loja | Informações do Produto</title>
 </head>
 <body>
+	<%@include  file="Cabecalho.jsp" %>
+
     <div>
         <h1>Informações do Produto</h1>
-        <table>
-
-          <c:forEach var="p" items="${produto.all()}">
-              <tr>
-                  <th>Nome</th>
-                <td>${p.nome}</td>
-              </tr>
-              <tr> 
-                  <th>Descrição</th>
-                  <td>${p.descricao}</td>
-              </tr>
-              <tr> 
-                  <th>Preço</th>
-                  <td>${p.preco}</td>
-              </tr>
-              <tr> 
-                  <th>Estoque</th>
-                  <td>${p.estoque}</td>
-              </tr>
-          </c:forEach>
-        </table>
-        <a href="LojistaPage">Página Inicial</a>
+		<table class="table">
+		  <tr>
+		    <th>Nome</th>
+		    <th>Descrição</th>
+		    <th>Preço</th>
+		    <th>Estoque</th>
+		  </tr>
+		  <c:forEach var="p" items="${produto.all()}">
+			  <tr>
+			    <td>${p.nome}</td>
+			    <td>${p.descricao}</td>
+			    <td>${p.preco}</td>
+			    <td>${p.estoque}</td>
+			  </tr>
+		  </c:forEach>
+		</table>
     </div>
 </body>
 </html>

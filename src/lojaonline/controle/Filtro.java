@@ -23,15 +23,9 @@ public class Filtro implements Filter {
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
         HttpServletRequest httpServletRequest = (HttpServletRequest) request;
         String url = httpServletRequest.getRequestURI();
-        String path = url.split("/")[2];
-        HttpSession session = httpServletRequest.getSession(); //capturando a sessao
-
-        if(path.contentEquals("Login") || path.equals("ListaProdutos.jsp") || path.equals("VerCarrinho.jsp")) {
-        	chain.doFilter(request, response);
-        	return;
-        }
+        HttpSession session = httpServletRequest.getSession(); //capturando a sessao}
         
-        if(session.getAttribute("usuario") != null || url.lastIndexOf("Login.html")>-1) {
+        if(session.getAttribute("usuario") != null || url.lastIndexOf("Login.html")>-1 || url.lastIndexOf("CadastroUsuario.html")>-1 || url.lastIndexOf("Login")>-1 || url.lastIndexOf("ListaProdutos.jsp")>-1 || url.lastIndexOf("VerCarrinho.jsp")>-1) {
             chain.doFilter(request, response);
         }else {
             ((HttpServletResponse) response).sendRedirect("Login.html");

@@ -37,11 +37,10 @@ public class Login extends HttpServlet {
             HttpSession session = request.getSession(true);
             session.setMaxInactiveInterval(60*15);
             session.setAttribute("usuario", u);
-            System.out.println(u);
             if(u.isAdmin()) {
-            	response.sendRedirect("LojistaPage");
+            	response.sendRedirect("ExibirProduto.jsp");
             }else {
-            	response.sendRedirect("ClientePage");	
+            	response.sendRedirect("ListaProdutos.jsp");	
             }
             
 

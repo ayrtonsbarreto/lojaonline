@@ -1,15 +1,30 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 <meta charset="ISO-8859-1">
 <title>Loja | Login</title>
+<style>
+	.login {
+		width: 300px;
+	}
+	.login-container {
+	    display: flex;
+	    justify-content: center;
+	    height: 100vh;
+	    align-items: center;
+	}
+</style>
 </head>
 <body>
-	<form method="post" action="Login">
-		Email: <input type="text" name="email"><br/>
-		Senha: <input type="password" name="senha"><br/>
-		
-		<button value="" name="botao" type="submit"> Entrar </button>
+	<div class="login-container">
+		<form method="post" action="Login" class="login">
+		Email:
+		<input class="form-control" type="text" name="email"><br/>
+		Senha: 
+		<input class="form-control" type="password" name="senha"><br/>
+		<button class="btn btn-success" value="" name="botao" type="submit"> Entrar </button>
 	</form>
+	</div>
 </body>
 </html>

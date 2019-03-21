@@ -7,17 +7,16 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<style>
-	table, th, td {
-		border: 1px solid black;
-	}
-</style>
+
 <title>Loja | Lista Produtos</title>
 </head>
 <body>
 	<div>
-		<h1>Lista Produtos</h1>
-		<table>
+
+		<%@include  file="Cabecalho.jsp" %>
+		
+		<h2>Lista Produtos</h2>
+		<table class="table">
 		  <tr>
 		    <th>Nome</th>
 		    <th>Descrição</th>
